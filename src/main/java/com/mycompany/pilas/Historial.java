@@ -102,8 +102,12 @@ public class Historial extends javax.swing.JFrame {
 
     private void adelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adelanteActionPerformed
         String variable = JOptionPane.showInputDialog("a dónde irás?");
+        if(variable.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "No se admiten vacios");
+        }else{
         pila.push(variable);
         temporal.push(variable);
+        }
     }//GEN-LAST:event_adelanteActionPerformed
 
     private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
@@ -111,6 +115,11 @@ public class Historial extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirActionPerformed
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+        if(pila.isEmpty()){
+        JOptionPane.showMessageDialog(null, "no hay nada");
+        }else{
+        JOptionPane.showMessageDialog(null, "estas acá " + pila.peekDonde());
+        }
         temporal.push(pila.peek());
         pila.pop();
     }//GEN-LAST:event_atrasActionPerformed
