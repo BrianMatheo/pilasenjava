@@ -47,7 +47,7 @@ public class Pilas<T> {
         if (isEmpty()) {
             throw new IllegalStateException("La pila está vacía");
         }
-        return (T) elementos[tope-contador];
+        return (T) elementos[tope];
     }
 
     // Método para verificar si la pila está vacía

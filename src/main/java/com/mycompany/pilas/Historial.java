@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 
 public class Historial extends javax.swing.JFrame {
 
-    Pilas<Integer> pila = new Pilas<>();
+    Pilas<String> pila = new Pilas<>();
+    Pilas<String> temporal = new Pilas<>();
     
     public Historial() {
         initComponents();
@@ -24,40 +25,40 @@ public class Historial extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        imprimir = new javax.swing.JButton();
+        atras = new javax.swing.JButton();
+        adelante = new javax.swing.JButton();
+        donde = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Historial");
 
-        jButton1.setText("imprimir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        imprimir.setText("imprimir");
+        imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                imprimirActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Ir atrás");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        atras.setText("Ir atrás");
+        atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                atrasActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Ir adelante");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        adelante.setText("Ir adelante");
+        adelante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                adelanteActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Donde estoy");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        donde.setText("Donde estoy");
+        donde.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                dondeActionPerformed(evt);
             }
         });
 
@@ -72,12 +73,12 @@ public class Historial extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(donde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(imprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(adelante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(atras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
@@ -87,34 +88,37 @@ public class Historial extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(imprimir)
+                    .addComponent(atras))
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(adelante)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(donde)
                 .addContainerGap(137, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        pila.push(Integer.parseInt(JOptionPane.showInputDialog("ingrese el valor")));
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void adelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adelanteActionPerformed
+        String variable = JOptionPane.showInputDialog("a dónde irás?");
+        temporal.push(variable);
+        pila.push(variable);
+    }//GEN-LAST:event_adelanteActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
         pila.imprimir();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_imprimirActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+        temporal.push(pila.peek());
         pila.push(pila.peek());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_atrasActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void dondeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dondeActionPerformed
         JOptionPane.showMessageDialog(null, "estas aca we " + pila.peekDonde());
        
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_dondeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,10 +156,10 @@ public class Historial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton adelante;
+    private javax.swing.JButton atras;
+    private javax.swing.JButton donde;
+    private javax.swing.JButton imprimir;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
